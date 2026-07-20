@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "gebinee",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "identifier": "com.gebinee.gebinee",
   "build": {
     "beforeDevCommand": "npm run dev",
@@ -12,9 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "gebinee",
-        "width": 800,
-        "height": 600
+        "title": "Gebinee",
+        "width": 900,
+        "height": 600,
+        "minWidth": 800,
+        "minHeight": 600
       }
     ],
     "security": {
@@ -23,13 +25,39 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": [
+      "nsis",
+      "appimage",
+      "dmg",
+      "app"
+    ],
+    "createUpdaterArtifacts": true,
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "license": "MIT",
+    "licenseFile": "../LICENSE",
+    "resources": ["resources/word.sqlite"],
+    "windows": {
+      "nsis": {
+        "installMode": "both",
+        "installerIcon": "icons/icon.ico",
+        "installerHooks": "scripts/nsis-hooks.nsh"
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDdFODhEOUQ1Q0U1NTM4M0IKUldRN09GWE8xZG1JZnVXS3ZTLzNNY2xrZ0dvL1ZoKzg1cU1HaHVTcWRtbTJ4Y3pxODVKU0tjczUK",
+      "endpoints": [
+        "https://github.com/gebinee/update-info/releases/download/gebinee/latest.json",
+        "https://gh-proxy.org/https://github.com/gebinee/update-info/releases/download/gebinee/latest-proxy.json"
+      ]
+    },
+    "process": {}
   }
 }

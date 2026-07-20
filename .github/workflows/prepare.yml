@@ -1,0 +1,33 @@
+#file: noinspection SpellCheckingInspection
+name: Prepare
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Version branch'
+        required: true
+        type: choice
+        default: 'main'
+        options:
+          - main
+      version_bump:
+        description: 'Version increment options'
+        required: true
+        type: choice
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    uses: gebinee/.github/.github/workflows/tauri-prepare.yml@main
+    with:
+      branch: ${{ inputs.branch }}
+      version_bump: ${{ inputs.version_bump }}

@@ -1,0 +1,34 @@
+#file: noinspection SpellCheckingInspection
+name: Build and Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: 'Version number'
+        type: string
+        required: true
+      is_latest:
+        description: 'Mark as latest release'
+        required: true
+        type: boolean
+        default: true
+      release_notes:
+        description: 'Release notes'
+        required: true
+        type: string
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: gebinee/.github/.github/workflows/tauri-build-and-publish.yml@main
+    with:
+      version_number: ${{ inputs.version_number }}
+      release_notes: ${{ inputs.release_notes }}
+      is_latest: ${{ inputs.is_latest }}
+      product_name: Gebinee
+      repo_name: gebinee
+    secrets: inherit

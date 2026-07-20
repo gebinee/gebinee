@@ -1,0 +1,47 @@
+#file: noinspection SpellCheckingInspection
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Version branch'
+        required: true
+        type: choice
+        default: 'main'
+        options:
+          - main
+      version_bump:
+        description: 'Version increment options'
+        required: true
+        type: choice
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
+      is_latest:
+        description: 'Mark as latest release'
+        required: true
+        type: boolean
+        default: true
+      release_notes:
+        description: 'Release notes'
+        required: true
+        type: string
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: gebinee/.github/.github/workflows/tauri-release.yml@main
+    with:
+      branch: ${{ inputs.branch }}
+      version_bump: ${{ inputs.version_bump }}
+      release_notes: ${{ inputs.release_notes }}
+      is_latest: ${{ inputs.is_latest }}
+      product_name: Gebinee
+      repo_name: gebinee
+    secrets: inherit

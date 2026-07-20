@@ -1,0 +1,39 @@
+#file: noinspection SpellCheckingInspection
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: 'Version number'
+        type: string
+        required: true
+      release_notes:
+        description: 'Release notes'
+        type: string
+        required: true
+      is_latest:
+        description: 'Mark as latest release'
+        type: boolean
+        required: true
+      build_run_id:
+        description: 'Run ID in step Tauri Build'
+        type: string
+        required: true
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: gebinee/.github/.github/workflows/tauri-publish.yml@main
+    with:
+      version_number: ${{ inputs.version_number }}
+      release_notes: ${{ inputs.release_notes }}
+      is_latest: ${{ inputs.is_latest }}
+      product_name: Gebinee
+      repo_name: gebinee
+      build_run_id: ${{ inputs.build_run_id }}
+    secrets:
+      UPDATE_INFO_TOKEN: ${{ secrets.UPDATE_INFO_TOKEN }}
