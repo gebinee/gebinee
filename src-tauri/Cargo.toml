@@ -1,6 +1,6 @@
 [package]
 name = "gebinee"
-version = "0.0.0"
+version = "1.0.0"
 license = "MIT"
 description = "gebinee 注音软件"
 authors = ["Pueraria lobata <438707985@qq.com>"]
