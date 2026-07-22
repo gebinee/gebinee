@@ -41,7 +41,9 @@
     ],
     "license": "MIT",
     "licenseFile": "../LICENSE",
-    "resources": ["resources/word.sqlite"],
+    "resources": [
+      "resources/word.sqlite"
+    ],
     "windows": {
       "nsis": {
         "installMode": "both",
@@ -52,7 +54,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDdFODhEOUQ1Q0U1NTM4M0IKUldRN09GWE8xZG1JZnVXS3ZTLzNNY2xrZ0dvL1ZoKzg1cU1HaHVTcWRtbTJ4Y3pxODVKU0tjczUK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEM0QTlDRTA2MTczRTdFNkIKUldScmZqNFhCczZweEh2QlEyTUJEM1ZnQldJNFRCNXVrQ0lodEJPZVdlMkFWaXgyaXhyN25GT0UK",
       "endpoints": [
         "https://github.com/gebinee/update-info/releases/download/gebinee/latest.json",
         "https://gh-proxy.org/https://github.com/gebinee/update-info/releases/download/gebinee/latest-proxy.json"
